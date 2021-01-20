@@ -1,0 +1,9 @@
+[submodule "server/selector/modules/ProjectTapebucket"]
+	path = server/selector/modules/ProjectTapebucket
+	url = https://github.com/gidoBOSSftw5731/ProjectTapebucket.git
+[submodule "server/selector/modules/ProjectMoocow"]
+	path = server/selector/modules/ProjectMoocow
+	url = https://github.com/gidoBOSSftw5731/ProjectMoocow.git
+[submodule "server/selector/modules/dwarfism-2.0"]
+	path = server/selector/modules/dwarfism-2.0
+	url = https://github.com/gidoBOSSftw5731/dwarfism-2.0.git
