@@ -2,6 +2,7 @@ package selector
 
 import (
 	"database/sql"
+	"github.com/mattn/go-sqlite3"
 	"encoding/json"
 	"fmt"
 	"html/template"
@@ -79,6 +80,7 @@ func SwitchStatement(config tools.Config, obj Caseable) {
 
 	case "minePageVar.css", "firstPage.css", "todoPageVar.css":
 		http.ServeFile(obj.Resp, obj.Req, "server/"+obj.URLSplit[obj.SwitchLen])
+/*
 	case "verifycaptcha":
 		if len(obj.URLSplit) != obj.I1+1 {
 			tools.ErrorHandler(obj.Resp, obj.Req, 429, "recaptcha failed")
@@ -96,6 +98,7 @@ func SwitchStatement(config tools.Config, obj Caseable) {
 	case "github", "git":
 		github := "https://github.com/gidoBOSSftw5731"
 		http.Redirect(obj.Resp, obj.Req, github, http.StatusSeeOther)
+*/
 	case "signin", "login":
 		tools.SignIn(obj.Resp, obj.Req, config)
 	case "logout", "signout":
@@ -114,6 +117,7 @@ func SwitchStatement(config tools.Config, obj Caseable) {
 		fmt.Fprintln(obj.Resp, ok)
 	case "directory":
 		tools.Directory(obj.Resp, obj.Req, config)
+/*
 	case "pinbot":
 		wd, _ := os.Getwd()
 
@@ -173,6 +177,7 @@ func SwitchStatement(config tools.Config, obj Caseable) {
 		dwarfism.ShortPage(obj.Resp, obj.Req, config, "")
 	case "dform":
 		dwarfism.ShortResp(obj.Resp, obj.Req, config)
+
 	case "d":
 		// Checks for hash/element/thing
 		if len(obj.URLSplit) != obj.I1+1 {
@@ -181,6 +186,7 @@ func SwitchStatement(config tools.Config, obj Caseable) {
 		}
 
 		dwarfism.Biggify(obj.Resp, obj.Req, config, obj.URLSplit[obj.I1])
+*/
 	case "submitpaste":
 		if obj.Req.Method != "POST" {
 			tools.ErrorHandler(obj.Resp, obj.Req, 400, "Must be post")
@@ -190,8 +196,8 @@ func SwitchStatement(config tools.Config, obj Caseable) {
 		// I realize now that I am not going to copy over this struct every time
 		req := obj.Req
 		resp := &obj.Resp
-
-		db, err := sql.Open("mysql", fmt.Sprintf("%s@tcp(127.0.0.1:3306)/ImgSrvr", config.SQLAcc))
+/*
+		db, err := sql.Open("sqlite3", "ImgSrvr.db")
 		if err != nil {
 			tools.ErrorHandler(*resp, req, 500, "error adding to db")
 			log.Error("Oh noez, could not connect to database")
@@ -200,7 +206,7 @@ func SwitchStatement(config tools.Config, obj Caseable) {
 		log.Debug("Oi, mysql did thing")
 		defer db.Close()
 		// end of SQL opening
-
+*/
 		//paste := req.FormValue("paste") // Saving paste to memory
 		type out struct {
 			Paste string
@@ -232,7 +238,7 @@ func SwitchStatement(config tools.Config, obj Caseable) {
 		// I realize now that I am not going to copy over this struct every time
 		req := obj.Req
 		resp := &obj.Resp
-
+/*
 		db, err := sql.Open("mysql", fmt.Sprintf("%s@tcp(127.0.0.1:3306)/ImgSrvr", config.SQLAcc))
 		if err != nil {
 			tools.ErrorHandler(*resp, req, 500, "error adding to db")
@@ -242,7 +248,7 @@ func SwitchStatement(config tools.Config, obj Caseable) {
 		log.Debug("Oi, mysql did thing")
 		defer db.Close()
 		// end of SQL opening
-
+*/
 		templatePath := "./server/selector/modules/ProjectTapebucket/index.html"
 		templateContents, _ := ioutil.ReadFile(templatePath)
 

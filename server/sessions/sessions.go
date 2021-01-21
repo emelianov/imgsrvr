@@ -2,6 +2,7 @@ package sessions
 
 import (
 	"database/sql"
+	"github.com/mattn/go-sqlite3"
 	"fmt"
 	"math/rand"
 	"net/http"
@@ -26,7 +27,7 @@ const (
 )
 
 func startSQL(sqlAcc string) *sql.DB {
-	db, err := sql.Open("mysql", fmt.Sprintf("%s@tcp(127.0.0.1:3306)/ImgSrvr", sqlAcc))
+	db, err := sql.Open("sqlite3", "ImgSrvr.db")
 	if err != nil {
 		log.Error("Oh noez, could not connect to database")
 		log.Errorf("Error in SQL! %v", err)
